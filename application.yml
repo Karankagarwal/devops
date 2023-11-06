@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-docker-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/Karankagarwal/devops.git' # Replace with your Git repository URL
+    targetRevision: HEAD
+    path: 'apps/overlays/qa' # Replace with the path to your Kustomize directory in the Git repository
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: hello-docker # Replace with the namespace where you want to deploy your application
+  syncPolicy:
+    automated:
+      prune: true # Set to true if you want to automatically delete resources that are not in Git
+      selfHeal: true # Set to true if you want to automatically correct drift from the Git state
