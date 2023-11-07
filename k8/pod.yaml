@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-docker-pod-1
+  labels:
+    app: hello-docker
+spec:
+  containers:
+  - name: hello-docker-container
+    image: karanagarwal1987/hello-docker:latest
+    ports:
+    - containerPort: 8080
